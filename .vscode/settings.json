@@ -2,7 +2,8 @@
 	"java.project.sourcePaths": ["src"],
 	"java.project.outputPath": "bin",
 	"java.project.referencedLibraries": {
-		"include": ["lib/**/*.jar", "c:\\Users\\Julia\\Downloads\\lombok.jar"],
-		"exclude": ["lib/lombok.jar"]
-	}
+		"include": ["lib/**/*.jar", "c:\\Users\\Julia\\Downloads\\lombok.jar"]
+	},
+	"java.jdt.ls.vmargs": "-javaagent:\\\"C:\\Users\\Julia\\Downloads\\lombok.jar\\\" -Xbootclasspath/a:/path/to/your/lombok.jar",
+"java.configuration.updateBuildConfiguration": "automatic"
 }
