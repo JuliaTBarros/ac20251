@@ -4,8 +4,5 @@
 	"java.project.referencedLibraries": [
 		"lib/**/*.jar",
 		"c:\\Users\\Julia\\Downloads\\lombok.jar"
-	],
-	"java.jdt.ls.vmargs": "-javaagent:C:/Users/Julia/OneDrive/Área de Trabalho/ac20251/lib/lombok.jar",
-	"java.configuration.updateBuildConfiguration": "automatic",
-	"java.jdt.ls.lombokSupport.enabled": true
+	]
 }
