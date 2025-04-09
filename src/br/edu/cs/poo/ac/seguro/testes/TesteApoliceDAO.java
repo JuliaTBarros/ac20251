@@ -19,7 +19,7 @@ public class TesteApoliceDAO extends TesteDAO {
     @Test
     public void teste01() {
         String numero = "00000000";
-        cadastro.incluir(new Apolice(numero, null, BigDecimal.valueOf(1000.0),
+        cadastro.incluir(new Apolice(numero,null, BigDecimal.valueOf(1000.0),
                 BigDecimal.valueOf(5000.0), BigDecimal.valueOf(50000.0)), numero);
         Apolice apolice = dao.buscar(numero);
         Assertions.assertNotNull(apolice);

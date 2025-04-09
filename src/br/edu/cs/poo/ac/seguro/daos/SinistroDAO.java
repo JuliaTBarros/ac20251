@@ -15,20 +15,20 @@ public class SinistroDAO extends DAOGenerico {
         return (Sinistro)cadastro.buscar(numero);
     }
 
-    public boolean incluir(Sinistro sinistro) {
-        if (buscar(sinistro.getNumero()) != null) {
+    public boolean incluir(Sinistro segurado) {
+        if (buscar(segurado.getNumero()) != null) {
             return false;
         } else {
-            cadastro.incluir(sinistro, sinistro.getNumero());
+            cadastro.incluir(segurado, segurado.getNumero());
             return true;
         }
     }
 
-    public boolean alterar(Sinistro sinistro) {
-        if (buscar(sinistro.getNumero()) == null) {
+    public boolean alterar(Sinistro segurado) {
+        if (buscar(segurado.getNumero()) == null) {
             return false;
         } else {
-            cadastro.alterar(sinistro, sinistro.getNumero());
+            cadastro.alterar(segurado, segurado.getNumero());
             return true;
         }
     }

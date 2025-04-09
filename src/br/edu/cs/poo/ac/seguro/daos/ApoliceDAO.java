@@ -12,20 +12,20 @@ public class ApoliceDAO extends DAOGenerico {
         return (Apolice)cadastro.buscar(numero);
     }
 
-    public boolean incluir(Apolice apolice) {
-        if (buscar(apolice.getNumero()) != null) {
+    public boolean incluir(Apolice segurado) {
+        if (buscar(segurado.getNumero()) != null) {
             return false;
         } else {
-            cadastro.incluir(apolice, apolice.getNumero());
+            cadastro.incluir(segurado, segurado.getNumero());
             return true;
         }
     }
 
-    public boolean alterar(Apolice apolice) {
-        if (buscar(apolice.getNumero()) == null) {
+    public boolean alterar(Apolice segurado) {
+        if (buscar(segurado.getNumero()) == null) {
             return false;
         } else {
-            cadastro.alterar(apolice, apolice.getNumero());
+            cadastro.alterar(segurado, segurado.getNumero());
             return true;
         }
     }

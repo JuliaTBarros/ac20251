@@ -11,11 +11,11 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class Apolice implements Serializable {
+    private String numero;
     private Veiculo veiculo;
     private BigDecimal valorFranquia;
     private BigDecimal valorPremio;
     private BigDecimal valorMaximoSegurado;
-    private String numero;
 
     public String getNumero() {
         return numero;
