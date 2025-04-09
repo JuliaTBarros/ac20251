@@ -1,5 +1,7 @@
 package br.edu.cs.poo.ac.seguro.entidades;
 
+import java.lang.String;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
