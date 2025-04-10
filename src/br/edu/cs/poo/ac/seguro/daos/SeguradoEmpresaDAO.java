@@ -3,8 +3,6 @@ package br.edu.cs.poo.ac.seguro.daos;
 import br.edu.cesarschool.next.oo.persistenciaobjetos.CadastroObjetos;
 import br.edu.cs.poo.ac.seguro.entidades.SeguradoEmpresa;
 
-import java.io.Serializable;
-
 public class SeguradoEmpresaDAO extends DAOGenerico{
 
     public SeguradoEmpresaDAO() {
@@ -16,7 +14,7 @@ public class SeguradoEmpresaDAO extends DAOGenerico{
     }
 
     public boolean incluir(SeguradoEmpresa segurado) {
-        if (buscar(segurado.getCnpj()) == null) {
+        if (buscar(segurado.getCnpj()) != null) {
             return false;
         } else {
             cadastro.incluir(segurado, segurado.getCnpj());
