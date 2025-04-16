@@ -14,7 +14,7 @@ public class TesteSeguradoEmpresaDAO extends TesteDAO {
     protected Class getClasse() {
         return SeguradoEmpresa.class;
     }
-    @org.junit.Test
+
     @Test
     public void teste01() {
         String cnpj = "00000000";

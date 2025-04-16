@@ -12,7 +12,7 @@ import br.edu.cs.poo.ac.seguro.entidades.SeguradoPessoa;
 import br.edu.cs.poo.ac.seguro.entidades.TipoSinistro;
 
 public class TestesEntidades {
-    @org.junit.Test
+
     @Test
     public void teste01() {
         TipoSinistro ts = TipoSinistro.getTipoSinistro(1);

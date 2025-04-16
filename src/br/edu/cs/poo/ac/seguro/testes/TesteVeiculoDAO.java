@@ -13,7 +13,7 @@ public class TesteVeiculoDAO extends TesteDAO {
     protected Class getClasse() {
         return Veiculo.class;
     }
-    @org.junit.Test
+
     @Test
     public void teste01() {
         String placa = "00000000";
