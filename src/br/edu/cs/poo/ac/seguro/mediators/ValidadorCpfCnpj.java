@@ -7,40 +7,24 @@ public class ValidadorCpfCnpj {
             return false;
         }
 
-        // Algoritmo de validação de CNPJ
-        // Validação específica para os casos de teste
-        if (cnpj.equals("11851715000174")) {
-            return true;
-        } else if (cnpj.equals("11851715000171")) {
+        if (temDigitosIguais(cnpj)) {
             return false;
         }
 
-        // Aqui implementaria o algoritmo completo de validação de CNPJ
-        int[] multiplicador1 = {5,4,3,2,9,8,7,6,5,4,3,2};
-        int[] multiplicador2 = {6,5,4,3,2,9,8,7,6,5,4,3,2};
+        // Primeiro dígito
+        int dv1 = calcularDigitoVerificador(cnpj, 0, 12, new int[]{5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2});
 
-        String cnpjSemDigitos = cnpj.substring(0, 12);
-        char dig13 = cnpj.charAt(12);
-        char dig14 = cnpj.charAt(13);
-
+        // Segundo dígito
+        int[] multiplicador2 = {6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2};
         int soma = 0;
-        for (int i = 0; i < 12; i++) {
-            soma += (cnpj.charAt(i) - '0') * multiplicador1[i];
-        }
-
-        int resto = soma % 11;
-        int dv1 = resto < 2 ? 0 : 11 - resto;
-
-        soma = 0;
         for (int i = 0; i < 12; i++) {
             soma += (cnpj.charAt(i) - '0') * multiplicador2[i];
         }
         soma += dv1 * multiplicador2[12];
-
-        resto = soma % 11;
+        int resto = soma % 11;
         int dv2 = resto < 2 ? 0 : 11 - resto;
 
-        return (dig13 - '0' == dv1) && (dig14 - '0' == dv2);
+        return (cnpj.charAt(12) - '0' == dv1) && (cnpj.charAt(13) - '0' == dv2);
     }
 
     public static boolean ehCpfValido(String cpf) {
@@ -48,38 +32,42 @@ public class ValidadorCpfCnpj {
             return false;
         }
 
-        // Validação específica para os casos de teste
-        if (cpf.equals("07255431089")) {
-            return true;
-        } else if (cpf.equals("07255431081")) {
+        if (temDigitosIguais(cpf)) {
             return false;
         }
 
-        // Algoritmo de validação de CPF
-        int[] multiplicador1 = {10, 9, 8, 7, 6, 5, 4, 3, 2};
+        // Primeiro dígito
+        int dv1 = calcularDigitoVerificador(cpf, 0, 9, new int[]{10, 9, 8, 7, 6, 5, 4, 3, 2});
+
+        // Segundo dígito
         int[] multiplicador2 = {11, 10, 9, 8, 7, 6, 5, 4, 3, 2};
-
-        String cpfSemDigito = cpf.substring(0, 9);
-        char dig10 = cpf.charAt(9);
-        char dig11 = cpf.charAt(10);
-
         int soma = 0;
-        for (int i = 0; i < 9; i++) {
-            soma += (cpf.charAt(i) - '0') * multiplicador1[i];
-        }
-
-        int resto = soma % 11;
-        int dv1 = resto < 2 ? 0 : 11 - resto;
-
-        soma = 0;
         for (int i = 0; i < 9; i++) {
             soma += (cpf.charAt(i) - '0') * multiplicador2[i];
         }
         soma += dv1 * multiplicador2[9];
-
-        resto = soma % 11;
+        int resto = soma % 11;
         int dv2 = resto < 2 ? 0 : 11 - resto;
 
-        return (dig10 - '0' == dv1) && (dig11 - '0' == dv2);
+        return (cpf.charAt(9) - '0' == dv1) && (cpf.charAt(10) - '0' == dv2);
+    }
+
+    private static boolean temDigitosIguais(String documento) {
+        char primeiro = documento.charAt(0);
+        for (int i = 1; i < documento.length(); i++) {
+            if (documento.charAt(i) != primeiro) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private static int calcularDigitoVerificador(String documento, int inicio, int fim, int[] multiplicadores) {
+        int soma = 0;
+        for (int i = inicio, j = 0; i < fim; i++, j++) {
+            soma += (documento.charAt(i) - '0') * multiplicadores[j];
+        }
+        int resto = soma % 11;
+        return resto < 2 ? 0 : 11 - resto;
     }
 }

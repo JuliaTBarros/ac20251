@@ -9,7 +9,7 @@ public class SeguradoPessoa extends Segurado implements Serializable {
     private double renda;
 
     public SeguradoPessoa(String nome, Endereco endereco, LocalDate dataNascimento, BigDecimal bonus,
-            String cpf, double renda) {
+                          String cpf, double renda) {
         super(nome, endereco, dataNascimento, bonus);
         this.cpf = cpf;
         this.renda = renda;
