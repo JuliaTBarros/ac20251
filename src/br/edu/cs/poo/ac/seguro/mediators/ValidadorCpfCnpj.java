@@ -11,10 +11,8 @@ public class ValidadorCpfCnpj {
             return false;
         }
 
-        // Primeiro dígito
         int dv1 = calcularDigitoVerificador(cnpj, 0, 12, new int[]{5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2});
 
-        // Segundo dígito
         int[] multiplicador2 = {6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2};
         int soma = 0;
         for (int i = 0; i < 12; i++) {
@@ -36,10 +34,8 @@ public class ValidadorCpfCnpj {
             return false;
         }
 
-        // Primeiro dígito
         int dv1 = calcularDigitoVerificador(cpf, 0, 9, new int[]{10, 9, 8, 7, 6, 5, 4, 3, 2});
 
-        // Segundo dígito
         int[] multiplicador2 = {11, 10, 9, 8, 7, 6, 5, 4, 3, 2};
         int soma = 0;
         for (int i = 0; i < 9; i++) {

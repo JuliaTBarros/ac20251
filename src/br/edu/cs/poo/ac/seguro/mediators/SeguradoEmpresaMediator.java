@@ -42,7 +42,6 @@ public class SeguradoEmpresaMediator {
     }
 
     public String validarSeguradoEmpresa(SeguradoEmpresa seg) {
-        // Validação dos atributos da superclasse
         String msgErro = seguradoMediator.validarNome(seg.getNome());
         if (msgErro != null) {
             return msgErro;
@@ -58,7 +57,6 @@ public class SeguradoEmpresaMediator {
             return "Data da abertura deve ser informada";
         }
 
-        // Validação dos atributos específicos
         msgErro = validarCnpj(seg.getCnpj());
         if (msgErro != null) {
             return msgErro;

@@ -2,10 +2,6 @@ package br.edu.cs.poo.divisao;
 
 import lombok.Getter;
 
-/**
- * Classe que representa o retorno de operações de divisão,
- * contendo o resultado ou uma mensagem de erro.
- */
 @Getter
 public class RetornoDivisao {
     private Double resultado;

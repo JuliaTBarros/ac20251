@@ -4,9 +4,6 @@ import br.edu.cesarschool.next.oo.persistenciaobjetos.CadastroObjetos;
 import br.edu.cs.poo.ac.seguro.entidades.Sinistro;
 import java.io.Serializable;
 
-/*
- * A classe Sinistro deve implementar Serializable.
- */
 public class SinistroDAO extends DAOGenerico {
     public SinistroDAO() {
         cadastro = new CadastroObjetos(Sinistro.class);

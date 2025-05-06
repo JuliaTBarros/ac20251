@@ -41,18 +41,15 @@ public class ApoliceMediator {
     }
 
     public RetornoInclusaoApolice incluirApolice(DadosVeiculo dados) {
-        // Validar dados do veículo
         if (dados == null) {
             return new RetornoInclusaoApolice(null, "Dados do veículo devem ser informados");
         }
 
-        // Validar todos os dados
         String msgErro = validarTodosDadosVeiculo(dados);
         if (msgErro != null) {
             return new RetornoInclusaoApolice(null, msgErro);
         }
 
-        // Verificar se o segurado existe
         String cpfOuCnpj = dados.getCpfOuCnpj();
         boolean isCpf = cpfOuCnpj.length() == 11;
         SeguradoPessoa seguradoPessoa = null;
@@ -70,7 +67,6 @@ public class ApoliceMediator {
             }
         }
 
-        // Gerar o número da apólice
         String numeroApolice;
         int anoAtual = LocalDate.now().getYear();
         if (isCpf) {
@@ -79,34 +75,25 @@ public class ApoliceMediator {
             numeroApolice = anoAtual + cpfOuCnpj + dados.getPlaca();
         }
 
-        // Verificar se já existe apólice para este veículo no ano atual
         Apolice apoliceExistente = daoApo.buscar(numeroApolice);
         if (apoliceExistente != null) {
             return new RetornoInclusaoApolice(null, "Apólice já existente para ano atual e veículo");
         }
 
-        // Buscar ou criar veículo
         Veiculo veiculo = daoVel.buscar(dados.getPlaca());
         CategoriaVeiculo categoria = CategoriaVeiculo.values()[dados.getCodigoCategoria() - 1];
 
         if (veiculo == null) {
-            // Criar novo veículo
             veiculo = new Veiculo(dados.getPlaca(), dados.getAno(), seguradoEmpresa, seguradoPessoa, categoria);
             daoVel.incluir(veiculo);
         } else {
-            // Atualizar proprietários do veículo
             veiculo.setProprietarioEmpresa(seguradoEmpresa);
             veiculo.setProprietarioPessoa(seguradoPessoa);
             daoVel.alterar(veiculo);
         }
 
-        // Calcular valores da apólice
         BigDecimal valorMaximoSegurado = dados.getValorMaximoSegurado().setScale(2, RoundingMode.HALF_UP);
-
-        // Cálculo do VPA (3% do valor máximo segurado)
         BigDecimal vpa = valorMaximoSegurado.multiply(new BigDecimal("0.03")).setScale(2, RoundingMode.HALF_UP);
-
-        // Cálculo do VPB
         BigDecimal vpb;
         if (seguradoEmpresa != null && seguradoEmpresa.isEhLocadoraDeVeiculos()) {
             vpb = vpa.multiply(new BigDecimal("1.2")).setScale(2, RoundingMode.HALF_UP);
@@ -114,23 +101,17 @@ public class ApoliceMediator {
             vpb = vpa;
         }
 
-        // Cálculo do VPC
         BigDecimal bonus = isCpf ? seguradoPessoa.getBonus() : seguradoEmpresa.getBonus();
         BigDecimal bonusDividido = bonus.divide(new BigDecimal("10"), 2, RoundingMode.HALF_UP);
         BigDecimal vpc = vpb.subtract(bonusDividido).setScale(2, RoundingMode.HALF_UP);
 
-        // Cálculo do valor do prêmio
         BigDecimal valorPremio = vpc.compareTo(BigDecimal.ZERO) > 0 ? vpc : BigDecimal.ZERO.setScale(2, RoundingMode.HALF_UP);
-
-        // Cálculo do valor da franquia (130% do VPB)
         BigDecimal valorFranquia = vpb.multiply(new BigDecimal("1.3")).setScale(2, RoundingMode.HALF_UP);
 
-        // Criar e incluir a apólice
         LocalDate dataInicioVigencia = LocalDate.now();
         Apolice apolice = new Apolice(numeroApolice, veiculo, valorFranquia, valorPremio, valorMaximoSegurado, dataInicioVigencia);
         daoApo.incluir(apolice);
 
-        // Verificar bonificação
         Sinistro[] sinistros = daoSin.buscarTodos();
         boolean temSinistroAnoAnterior = false;
 
@@ -155,7 +136,6 @@ public class ApoliceMediator {
         }
 
         if (!temSinistroAnoAnterior) {
-            // Adicionar bônus de 30% do valor do prêmio
             BigDecimal bonusAdicional = valorPremio.multiply(new BigDecimal("0.3")).setScale(2, RoundingMode.HALF_UP);
 
             if (isCpf) {
@@ -184,7 +164,6 @@ public class ApoliceMediator {
             return "Apólice inexistente";
         }
 
-        // Verificar se existe sinistro no mesmo ano da apólice
         Sinistro[] sinistros = daoSin.buscarTodos();
         if (sinistros != null) {
             int anoApolice = apolice.getDataInicioVigencia().getYear();
@@ -202,13 +181,11 @@ public class ApoliceMediator {
             }
         }
 
-        // Excluir a apólice
         daoApo.excluir(numero);
         return null;
     }
 
     private String validarTodosDadosVeiculo(DadosVeiculo dados) {
-        // Validar CPF ou CNPJ
         if (StringUtils.ehNuloOuBranco(dados.getCpfOuCnpj())) {
             return "CPF ou CNPJ deve ser informado";
         }
@@ -226,22 +203,18 @@ public class ApoliceMediator {
             return "CPF ou CNPJ inválido";
         }
 
-        // Validar placa
         if (StringUtils.ehNuloOuBranco(dados.getPlaca())) {
             return "Placa do veículo deve ser informada";
         }
 
-        // Validar ano
         if (dados.getAno() < 2020 || dados.getAno() > 2025) {
             return "Ano tem que estar entre 2020 e 2025, incluindo estes";
         }
 
-        // Validar categoria
         if (dados.getCodigoCategoria() < 1 || dados.getCodigoCategoria() > 5) {
             return "Categoria inválida";
         }
 
-        // Validar valor máximo segurado
         return validarCpfCnpjValorMaximo(dados);
     }
 

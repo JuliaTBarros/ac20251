@@ -17,17 +17,15 @@ public class Apolice implements Serializable {
     private BigDecimal valorMaximoSegurado;
     private LocalDate dataInicioVigencia;
 
-    // Constructor without dataInicioVigencia - for backward compatibility
     public Apolice(String numero, Veiculo veiculo, BigDecimal valorFranquia, BigDecimal valorPremio, BigDecimal valorMaximoSegurado) {
         this.numero = numero;
         this.veiculo = veiculo;
         this.valorFranquia = valorFranquia;
         this.valorPremio = valorPremio;
         this.valorMaximoSegurado = valorMaximoSegurado;
-        this.dataInicioVigencia = LocalDate.now(); // Default to current date
+        this.dataInicioVigencia = LocalDate.now();
     }
 
-    // Full constructor with all fields
     public Apolice(String numero, Veiculo veiculo, BigDecimal valorFranquia, BigDecimal valorPremio,
                    BigDecimal valorMaximoSegurado, LocalDate dataInicioVigencia) {
         this.numero = numero;
