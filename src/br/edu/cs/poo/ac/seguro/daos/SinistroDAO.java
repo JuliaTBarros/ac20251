@@ -2,6 +2,7 @@ package br.edu.cs.poo.ac.seguro.daos;
 
 import br.edu.cesarschool.next.oo.persistenciaobjetos.CadastroObjetos;
 import br.edu.cs.poo.ac.seguro.entidades.Sinistro;
+import java.io.Serializable;
 
 /*
  * A classe Sinistro deve implementar Serializable.
@@ -43,6 +44,15 @@ public class SinistroDAO extends DAOGenerico {
     }
 
     public Sinistro[] buscarTodos() {
-        return (Sinistro[])cadastro.buscarTodos();
+        Serializable[] objs = cadastro.buscarTodos();
+        if (objs == null) {
+            return null;
+        }
+
+        Sinistro[] sinistros = new Sinistro[objs.length];
+        for (int i = 0; i < objs.length; i++) {
+            sinistros[i] = (Sinistro) objs[i];
+        }
+        return sinistros;
     }
 }
