@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class SeguradoPessoa extends Segurado implements Serializable {
+public class SeguradoPessoa extends Segurado {
     private String cpf;
     private double renda;
 
@@ -37,5 +37,15 @@ public class SeguradoPessoa extends Segurado implements Serializable {
 
     public void setDataNascimento(LocalDate dataNascimento) {
         setDataCriacao(dataNascimento);
+    }
+
+    @Override
+    public boolean isEmpresa() {
+        return false; // SeguradoPessoa não é empresa
+    }
+
+    @Override
+    public String getIdUnico() {
+        return cpf;
     }
 }

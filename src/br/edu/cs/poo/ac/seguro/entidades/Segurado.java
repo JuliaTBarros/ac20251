@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.Period;
 
-public class Segurado implements Serializable {
+public abstract class Segurado implements Registro {
     private String nome;
     private Endereco endereco;
     private LocalDate dataCriacao;
@@ -57,4 +57,12 @@ public class Segurado implements Serializable {
     public void debitarBonus(BigDecimal valor) {
         this.bonus = this.bonus.subtract(valor);
     }
+
+    // Método abstrato para verificar se é empresa
+    public abstract boolean isEmpresa();
+
+    // Implementação do método da interface Registro
+    // Cada subclasse deve implementar seu próprio getIdUnico()
+    @Override
+    public abstract String getIdUnico();
 }

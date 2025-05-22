@@ -9,7 +9,7 @@ public class SeguradoEmpresa extends Segurado {
     private boolean ehLocadoraDeVeiculos;
 
     public SeguradoEmpresa(String nome, Endereco endereco, LocalDate dataAbertura, BigDecimal bonus,
-            String cnpj, double faturamento, boolean ehLocadoraDeVeiculos) {
+                           String cnpj, double faturamento, boolean ehLocadoraDeVeiculos) {
         super(nome, endereco, dataAbertura, bonus);
         this.cnpj = cnpj;
         this.faturamento = faturamento;
@@ -46,5 +46,15 @@ public class SeguradoEmpresa extends Segurado {
 
     public void setDataAbertura(LocalDate dataAbertura) {
         setDataCriacao(dataAbertura);
+    }
+
+    @Override
+    public boolean isEmpresa() {
+        return true; // SeguradoEmpresa é empresa
+    }
+
+    @Override
+    public String getIdUnico() {
+        return cnpj;
     }
 }
