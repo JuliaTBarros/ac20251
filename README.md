@@ -1,3 +1,5 @@
+Aqui está o README:
+
 # Sistema de Gerenciamento de Seguros
 
 ## Visão Geral
