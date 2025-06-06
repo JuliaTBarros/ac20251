@@ -35,6 +35,7 @@ O espaço de trabalho está organizado da seguinte forma:
     * `daos/`: Contém classes Data Access Object (DAO) para interagir com a camada de persistência de dados.
     * `entidades/`: Contém as classes de entidade principais (POJOs) que representam os objetos de domínio como `Apolice`, `Veiculo`, `Segurado`, `Sinistro`, etc.
     * `excecoes/`: Contém classes de exceção personalizadas.
+    * `gui/`: Contém as classes da interface gráfica do usuário (Swing).
     * `mediators/`: Contém classes que orquestram ações entre DAOs e entidades, implementando a lógica de negócios.
     * `testes/`: Contém testes JUnit para vários componentes do sistema.
 * `lib/`: Contém dependências do projeto, como `lombok.jar`.
@@ -45,6 +46,7 @@ O espaço de trabalho está organizado da seguinte forma:
 ## Tecnologias Utilizadas
 
 * **Java**: Linguagem de programação principal.
+* **Swing**: Para a interface gráfica do usuário.
 * **Lombok**: Usado para reduzir código boilerplate para POJOs (por exemplo, `@Getter`, `@Setter`, `@AllArgsConstructor`).
 * **JUnit 5**: Para testes unitários.
 * **PersistenciaObjetos.jar**: Uma biblioteca personalizada para persistência de objetos (detalhes inferidos de `PersistenciaObjetos.xml` e `DAOGenerico.java`).
@@ -68,12 +70,31 @@ O espaço de trabalho está organizado da seguinte forma:
 
 O projeto inclui um conjunto de testes JUnit no diretório `src/br/edu/cs/poo/ac/seguro/testes/`. Eles podem ser executados a partir do seu IDE para verificar a funcionalidade de diferentes módulos.
 
+### Executando a Interface Gráfica
+
+As telas da interface gráfica podem ser executadas individualmente através de seus métodos `main`.
+* `TelaCrudSeguradoPessoa.java`: Para gerenciar segurados pessoa física.
+* `TelaCrudSeguradoEmpresa.java`: Para gerenciar segurados pessoa jurídica.
+* `TelaInclusaoApolice.java`: Para incluir novas apólices de seguro.
+* `TelaInclusaoSinistro.java`: Para registrar novos sinistros.
+
 ## Como Usar
 
-O sistema é estruturado em torno de classes "mediator" (`ApoliceMediator`, `SeguradoEmpresaMediator`, `SeguradoPessoaMediator`, `SinistroMediator`) que fornecem a interface primária para realizar operações.
+O sistema é estruturado em torno de classes "mediator" (`ApoliceMediator`, `SeguradoEmpresaMediator`, `SeguradoPessoaMediator`, `SinistroMediator`) que fornecem a interface primária para realizar operações, seja através da GUI ou programaticamente.
 
-* Para gerenciar segurados, use `SeguradoPessoaMediator` para pessoas físicas e `SeguradoEmpresaMediator` para empresas.
-* Para criar ou gerenciar apólices de seguro, use `ApoliceMediator`.
-* Para registrar ou processar sinistros, use `SinistroMediator`.
+* Para gerenciar segurados, use `SeguradoPessoaMediator` para pessoas físicas e `SeguradoEmpresaMediator` para empresas. Estas funcionalidades são expostas nas telas `TelaCrudSeguradoPessoa` e `TelaCrudSeguradoEmpresa`.
+* Para criar ou gerenciar apólices de seguro, use `ApoliceMediator`. A inclusão de apólices é feita através da `TelaInclusaoApolice`.
+* Para registrar ou processar sinistros, use `SinistroMediator`. O registro de sinistros é feito através da `TelaInclusaoSinistro`.
 
 Os Data Access Objects (DAOs) lidam com a interação direta com o mecanismo de armazenamento de dados, gerenciado pela classe `CadastroObjetos` da biblioteca `PersistenciaObjetos`.
+
+## Interface Gráfica (GUI)
+
+O sistema possui uma interface gráfica desenvolvida com Swing, permitindo a interação do usuário para as principais funcionalidades. As telas disponíveis são:
+
+* **CRUD de Segurado Pessoa (`TelaCrudSeguradoPessoa.java`)**: Permite criar, buscar, alterar e excluir segurados do tipo pessoa física.
+* **CRUD de Segurado Empresa (`TelaCrudSeguradoEmpresa.java`)**: Permite criar, buscar, alterar e excluir segurados do tipo pessoa jurídica.
+* **Inclusão de Apólice (`TelaInclusaoApolice.java`)**: Formulário para registrar novas apólices de seguro, associando um veículo e um segurado.
+* **Inclusão de Sinistro (`TelaInclusaoSinistro.java`)**: Formulário para registrar ocorrências de sinistros vinculados a uma apólice existente.
+
+Cada uma dessas telas utiliza as classes mediadoras para realizar as operações de negócio e interagir com a camada de persistência de dados.
