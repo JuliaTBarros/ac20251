@@ -41,37 +41,52 @@ public class TelaInclusaoApolice extends JFrame {
 
 
         // CPF ou CNPJ
-        gbc.gridx = 0; gbc.gridy = 0; gbc.anchor = GridBagConstraints.WEST;
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.WEST;
         add(new JLabel("CPF/CNPJ do Segurado:"), gbc);
-        gbc.gridx = 1; gbc.anchor = GridBagConstraints.EAST;
+        gbc.gridx = 1;
+        gbc.anchor = GridBagConstraints.EAST;
         txtCpfOuCnpj = new JTextField(20); // [cite: 27]
         add(txtCpfOuCnpj, gbc);
 
         // Placa
-        gbc.gridx = 0; gbc.gridy = 1; gbc.anchor = GridBagConstraints.WEST;
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.anchor = GridBagConstraints.WEST;
         add(new JLabel("Placa do Veículo:"), gbc);
-        gbc.gridx = 1; gbc.anchor = GridBagConstraints.EAST;
+        gbc.gridx = 1;
+        gbc.anchor = GridBagConstraints.EAST;
         txtPlaca = new JTextField(20); // [cite: 27]
         add(txtPlaca, gbc);
 
         // Ano
-        gbc.gridx = 0; gbc.gridy = 2; gbc.anchor = GridBagConstraints.WEST;
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.anchor = GridBagConstraints.WEST;
         add(new JLabel("Ano do Veículo:"), gbc);
-        gbc.gridx = 1; gbc.anchor = GridBagConstraints.EAST;
+        gbc.gridx = 1;
+        gbc.anchor = GridBagConstraints.EAST;
         txtAno = new JTextField(20); // [cite: 27]
         add(txtAno, gbc);
 
         // Valor Máximo Segurado
-        gbc.gridx = 0; gbc.gridy = 3; gbc.anchor = GridBagConstraints.WEST;
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        gbc.anchor = GridBagConstraints.WEST;
         add(new JLabel("Valor Máximo Segurado (R$):"), gbc);
-        gbc.gridx = 1; gbc.anchor = GridBagConstraints.EAST;
+        gbc.gridx = 1;
+        gbc.anchor = GridBagConstraints.EAST;
         txtValorMaximoSegurado = new JTextField(20); // [cite: 27]
         add(txtValorMaximoSegurado, gbc);
 
         // Categoria do Veículo
-        gbc.gridx = 0; gbc.gridy = 4; gbc.anchor = GridBagConstraints.WEST;
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        gbc.anchor = GridBagConstraints.WEST;
         add(new JLabel("Categoria do Veículo:"), gbc); // [cite: 29]
-        gbc.gridx = 1; gbc.anchor = GridBagConstraints.EAST;
+        gbc.gridx = 1;
+        gbc.anchor = GridBagConstraints.EAST;
         cmbCategoriaVeiculo = new JComboBox<>();
         popularComboCategoriaVeiculo();
         add(cmbCategoriaVeiculo, gbc);
@@ -83,7 +98,11 @@ public class TelaInclusaoApolice extends JFrame {
         buttonPanel.add(btnIncluir);
         buttonPanel.add(btnLimpar);
 
-        gbc.gridx = 0; gbc.gridy = 5; gbc.gridwidth = 2; gbc.fill = GridBagConstraints.NONE; gbc.anchor = GridBagConstraints.CENTER;
+        gbc.gridx = 0;
+        gbc.gridy = 5;
+        gbc.gridwidth = 2;
+        gbc.fill = GridBagConstraints.NONE;
+        gbc.anchor = GridBagConstraints.CENTER;
         add(buttonPanel, gbc);
 
         // Event Handlers
@@ -101,13 +120,13 @@ public class TelaInclusaoApolice extends JFrame {
                 }
                 String selectedCategoriaName = (String) cmbCategoriaVeiculo.getSelectedItem();
                 CategoriaVeiculo selectedCategoria = null;
-                for(CategoriaVeiculo cat : CategoriaVeiculo.values()){
-                    if(cat.getNome().equals(selectedCategoriaName)){
+                for (CategoriaVeiculo cat : CategoriaVeiculo.values()) {
+                    if (cat.getNome().equals(selectedCategoriaName)) {
                         selectedCategoria = cat;
                         break;
                     }
                 }
-                if(selectedCategoria == null) {
+                if (selectedCategoria == null) {
                     JOptionPane.showMessageDialog(this, "Categoria de veículo inválida.", "Erro", JOptionPane.ERROR_MESSAGE);
                     return;
                 }

@@ -12,7 +12,7 @@ public class Endereco implements Serializable {
     private String cidade;
 
     public Endereco(String logradouro, String cep, String numero, String complemento, String pais, String estado,
-            String cidade) {
+                    String cidade) {
         this.logradouro = logradouro;
         this.cep = cep;
         this.numero = numero;

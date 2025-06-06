@@ -8,7 +8,8 @@ public class SeguradoEmpresaMediator {
     private SeguradoMediator seguradoMediator = SeguradoMediator.getInstancia();
     private SeguradoEmpresaDAO seguradoEmpresaDAO = new SeguradoEmpresaDAO();
 
-    private SeguradoEmpresaMediator() {}
+    private SeguradoEmpresaMediator() {
+    }
 
     public static SeguradoEmpresaMediator getInstancia() {
         if (instancia == null) {

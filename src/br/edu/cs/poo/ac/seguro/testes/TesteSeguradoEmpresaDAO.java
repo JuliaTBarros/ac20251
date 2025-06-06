@@ -11,6 +11,7 @@ import br.edu.cs.poo.ac.seguro.entidades.SeguradoEmpresa;
 
 public class TesteSeguradoEmpresaDAO extends TesteDAO {
     private SeguradoEmpresaDAO dao = new SeguradoEmpresaDAO();
+
     protected Class getClasse() {
         return SeguradoEmpresa.class;
     }
@@ -23,6 +24,7 @@ public class TesteSeguradoEmpresaDAO extends TesteDAO {
         SeguradoEmpresa seg = dao.buscar(cnpj);
         Assertions.assertNotNull(seg);
     }
+
     @Test
     public void teste02() {
         String cnpj = "10000000";
@@ -31,6 +33,7 @@ public class TesteSeguradoEmpresaDAO extends TesteDAO {
         SeguradoEmpresa seg = dao.buscar("11000000");
         Assertions.assertNull(seg);
     }
+
     @Test
     public void teste03() {
         String cnpj = "22000000";
@@ -39,6 +42,7 @@ public class TesteSeguradoEmpresaDAO extends TesteDAO {
         boolean ret = dao.excluir(cnpj);
         Assertions.assertTrue(ret);
     }
+
     @Test
     public void teste04() {
         String cnpj = "33000000";
@@ -47,6 +51,7 @@ public class TesteSeguradoEmpresaDAO extends TesteDAO {
         boolean ret = dao.excluir("33100000");
         Assertions.assertFalse(ret);
     }
+
     @Test
     public void teste05() {
         String cnpj = "44000000";
@@ -66,6 +71,7 @@ public class TesteSeguradoEmpresaDAO extends TesteDAO {
         boolean ret = dao.incluir(seg);
         Assertions.assertFalse(ret);
     }
+
     @Test
     public void teste07() {
         String cnpj = "66000000";

@@ -6,6 +6,7 @@ import lombok.Getter;
 public class RetornoInclusaoApolice {
     private String numeroApolice;
     private String mensagemErro;
+
     public RetornoInclusaoApolice(String numeroApolice, String mensagemErro) {
         if (numeroApolice == null && mensagemErro == null) {
             throw new RuntimeException(

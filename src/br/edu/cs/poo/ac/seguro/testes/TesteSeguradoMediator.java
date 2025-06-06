@@ -21,6 +21,7 @@ public class TesteSeguradoMediator {
         resultado = med.validarNome(null);
         assertEquals(msg, resultado);
     }
+
     @Test
     public void teste01() {
         Endereco endereco = null;
@@ -102,6 +103,7 @@ public class TesteSeguradoMediator {
         String resultado = med.validarEndereco(endereco);
         assertEquals("Tamanho do pa�s deve ser no m�ximo 40 caracteres", resultado);
     }
+
     @Test
     public void teste10() {
         String msg = "Pa�s deve ser informado";
@@ -112,18 +114,21 @@ public class TesteSeguradoMediator {
         resultado = med.validarEndereco(endereco);
         assertEquals(msg, resultado);
     }
+
     @Test
     public void teste11() {
         Endereco endereco = new Endereco("Rua A", "12345678", "1".repeat(22), null, "A", "PE", "Recife");
         String resultado = med.validarEndereco(endereco);
         assertEquals("Tamanho do n�mero deve ser no m�ximo 20 caracteres", resultado);
     }
+
     @Test
     public void teste12() {
         Endereco endereco = new Endereco("Rua A", "12345678", "122", "A".repeat(32), "A", "PE", "Recife");
         String resultado = med.validarEndereco(endereco);
         assertEquals("Tamanho do complemento deve ser no m�ximo 30 caracteres", resultado);
     }
+
     @Test
     public void teste13() {
         Endereco endereco = new Endereco("Rua A", "12345678", null, null, "BR", "PE", "Recife");
@@ -145,31 +150,37 @@ public class TesteSeguradoMediator {
         resultado = med.validarNome("  ");
         assertEquals(msg, resultado);
     }
+
     @Test
     public void teste15() {
         String resultado = med.validarNome("A".repeat(122));
         assertEquals("Tamanho do nome deve ser no m�ximo 100 caracteres", resultado);
     }
+
     @Test
     public void teste16() {
         String resultado = med.validarNome("Carlos");
         assertEquals(null, resultado);
     }
+
     @Test
     public void teste17() {
         String resultado = med.validarDataCriacao(null);
         assertEquals("Data da cria��o deve ser informada", resultado);
     }
+
     @Test
     public void teste18() {
         String resultado = med.validarDataCriacao(LocalDate.now().plusDays(1));
         assertEquals("Data da cria��o deve ser menor ou igual � data atual", resultado);
     }
+
     @Test
     public void teste19() {
         String resultado = med.validarDataCriacao(LocalDate.now().minusDays(2));
         assertEquals(null, resultado);
     }
+
     @Test
     public void teste20() {
         BigDecimal bonus = new BigDecimal("100.00");

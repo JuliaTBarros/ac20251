@@ -53,9 +53,11 @@ public class TelaCrudSeguradoPessoa extends JFrame {
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
         // CPF
-        gbc.gridx = 0; gbc.gridy = 0;
+        gbc.gridx = 0;
+        gbc.gridy = 0;
         add(new JLabel("CPF:"), gbc);
-        gbc.gridx = 1; gbc.weightx = 1.0;
+        gbc.gridx = 1;
+        gbc.weightx = 1.0;
         txtCpf = new JTextField(20);
         add(txtCpf, gbc);
         gbc.weightx = 0.0; // Reset weight
@@ -69,46 +71,57 @@ public class TelaCrudSeguradoPessoa extends JFrame {
         add(btnBuscar, gbc);
 
         // Nome
-        gbc.gridx = 0; gbc.gridy = 1;
+        gbc.gridx = 0;
+        gbc.gridy = 1;
         add(new JLabel("Nome:"), gbc);
-        gbc.gridx = 1; gbc.gridwidth = 3;
+        gbc.gridx = 1;
+        gbc.gridwidth = 3;
         txtNome = new JTextField(20);
         add(txtNome, gbc);
         gbc.gridwidth = 1; // Reset gridwidth
 
         // Data de Nascimento
-        gbc.gridx = 0; gbc.gridy = 2;
+        gbc.gridx = 0;
+        gbc.gridy = 2;
         add(new JLabel("Data Nasc. (dd/MM/yyyy):"), gbc);
-        gbc.gridx = 1; gbc.gridwidth = 3;
+        gbc.gridx = 1;
+        gbc.gridwidth = 3;
         txtDataNascimento = new JTextField(20);
         add(txtDataNascimento, gbc);
         gbc.gridwidth = 1;
 
         // Renda
-        gbc.gridx = 0; gbc.gridy = 3;
+        gbc.gridx = 0;
+        gbc.gridy = 3;
         add(new JLabel("Renda:"), gbc);
-        gbc.gridx = 1; gbc.gridwidth = 3;
+        gbc.gridx = 1;
+        gbc.gridwidth = 3;
         txtRenda = new JTextField(20);
         add(txtRenda, gbc);
         gbc.gridwidth = 1;
 
         // Bonus
-        gbc.gridx = 0; gbc.gridy = 4;
+        gbc.gridx = 0;
+        gbc.gridy = 4;
         add(new JLabel("Bônus:"), gbc);
-        gbc.gridx = 1; gbc.gridwidth = 3;
+        gbc.gridx = 1;
+        gbc.gridwidth = 3;
         txtBonus = new JTextField(20);
         add(txtBonus, gbc);
         gbc.gridwidth = 1;
 
         // Endereço Fields
-        gbc.gridx = 0; gbc.gridy = 5;
+        gbc.gridx = 0;
+        gbc.gridy = 5;
         add(new JLabel("Logradouro:"), gbc);
-        gbc.gridx = 1; gbc.gridwidth = 3;
+        gbc.gridx = 1;
+        gbc.gridwidth = 3;
         txtLogradouro = new JTextField(20);
         add(txtLogradouro, gbc);
         gbc.gridwidth = 1;
 
-        gbc.gridx = 0; gbc.gridy = 6;
+        gbc.gridx = 0;
+        gbc.gridy = 6;
         add(new JLabel("CEP:"), gbc);
         gbc.gridx = 1;
         txtCep = new JTextField(10);
@@ -120,14 +133,17 @@ public class TelaCrudSeguradoPessoa extends JFrame {
         txtNumeroEndereco = new JTextField(5);
         add(txtNumeroEndereco, gbc);
 
-        gbc.gridx = 0; gbc.gridy = 7;
+        gbc.gridx = 0;
+        gbc.gridy = 7;
         add(new JLabel("Complemento:"), gbc);
-        gbc.gridx = 1; gbc.gridwidth = 3;
+        gbc.gridx = 1;
+        gbc.gridwidth = 3;
         txtComplemento = new JTextField(20);
         add(txtComplemento, gbc);
         gbc.gridwidth = 1;
 
-        gbc.gridx = 0; gbc.gridy = 8;
+        gbc.gridx = 0;
+        gbc.gridy = 8;
         add(new JLabel("Cidade:"), gbc);
         gbc.gridx = 1;
         txtCidade = new JTextField(15);
@@ -139,9 +155,11 @@ public class TelaCrudSeguradoPessoa extends JFrame {
         txtEstado = new JTextField(2);
         add(txtEstado, gbc);
 
-        gbc.gridx = 0; gbc.gridy = 9;
+        gbc.gridx = 0;
+        gbc.gridy = 9;
         add(new JLabel("País:"), gbc);
-        gbc.gridx = 1; gbc.gridwidth = 3;
+        gbc.gridx = 1;
+        gbc.gridwidth = 3;
         txtPais = new JTextField(15);
         add(txtPais, gbc);
         gbc.gridwidth = 1;
@@ -158,7 +176,10 @@ public class TelaCrudSeguradoPessoa extends JFrame {
         buttonPanel.add(btnCancelar);
         buttonPanel.add(btnLimpar);
 
-        gbc.gridx = 0; gbc.gridy = 10; gbc.gridwidth = 4; gbc.anchor = GridBagConstraints.CENTER;
+        gbc.gridx = 0;
+        gbc.gridy = 10;
+        gbc.gridwidth = 4;
+        gbc.anchor = GridBagConstraints.CENTER;
         add(buttonPanel, gbc);
 
         // Event Handlers

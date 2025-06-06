@@ -126,12 +126,12 @@ public class ApoliceMediator {
                     if (sinistro.getVeiculo().getProprietario() != null) {
                         if (!sinistro.getVeiculo().getProprietario().isEmpresa() && segurado instanceof SeguradoPessoa) {
                             // Ambos são pessoa física
-                            mesmoProprietario = ((SeguradoPessoa)sinistro.getVeiculo().getProprietario()).getCpf()
-                                    .equals(((SeguradoPessoa)segurado).getCpf());
+                            mesmoProprietario = ((SeguradoPessoa) sinistro.getVeiculo().getProprietario()).getCpf()
+                                    .equals(((SeguradoPessoa) segurado).getCpf());
                         } else if (sinistro.getVeiculo().getProprietario().isEmpresa() && segurado instanceof SeguradoEmpresa) {
                             // Ambos são pessoa jurídica
-                            mesmoProprietario = ((SeguradoEmpresa)sinistro.getVeiculo().getProprietario()).getCnpj()
-                                    .equals(((SeguradoEmpresa)segurado).getCnpj());
+                            mesmoProprietario = ((SeguradoEmpresa) sinistro.getVeiculo().getProprietario()).getCnpj()
+                                    .equals(((SeguradoEmpresa) segurado).getCnpj());
                         }
                     }
 
@@ -213,7 +213,7 @@ public class ApoliceMediator {
         }
 
         if (StringUtils.ehNuloOuBranco(dados.getPlaca())) {
-            return "Placa do veículo deve ser informada";
+            return "Placa do veiculo deve ser informada";
         }
 
         if (dados.getAno() < 2020 || dados.getAno() > 2025) {

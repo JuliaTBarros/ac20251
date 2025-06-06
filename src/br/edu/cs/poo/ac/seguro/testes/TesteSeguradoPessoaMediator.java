@@ -17,6 +17,7 @@ import br.edu.cs.poo.ac.seguro.mediators.SeguradoPessoaMediator;
 
 public class TesteSeguradoPessoaMediator extends TesteMediator {
     private SeguradoPessoaMediator med = SeguradoPessoaMediator.getInstancia();
+
     @Override
     protected Class getClasse() {
         return SeguradoPessoa.class;
@@ -30,27 +31,32 @@ public class TesteSeguradoPessoaMediator extends TesteMediator {
         ret = med.validarCpf(" ");
         assertEquals(msg, ret);
     }
+
     @Test
     public void test02() {
         String ret = med.validarCpf("123456789012");
         assertEquals("CPF deve ter 11 caracteres", ret);
     }
+
     @Test
     public void test03() {
         String ret = med.validarCpf("07255431081");
         assertEquals("CPF com d�gito inv�lido", ret);
     }
+
     @Test
     public void test04() {
         String ret = med.validarCpf("07255431089");
         assertEquals(null, ret);
     }
+
     @Test
     public void test05() {
         String msg = "Renda deve ser maior ou igual � zero";
         String ret = med.validarRenda(-10.0);
         assertEquals(msg, ret);
     }
+
     @Test
     public void test06() {
         String ret = med.validarRenda(10.0);
@@ -70,6 +76,7 @@ public class TesteSeguradoPessoaMediator extends TesteMediator {
         SeguradoPessoa segBuscado = med.buscarSeguradoPessoa(cpf);
         assertNotNull(segBuscado);
     }
+
     @Test
     public void test08() {
         String cpf = "07255431089";
@@ -107,6 +114,7 @@ public class TesteSeguradoPessoaMediator extends TesteMediator {
         ret = med.incluirSeguradoPessoa(seg);
         assertEquals("Renda deve ser maior ou igual � zero", ret);
     }
+
     @Test
     public void test10() {
         String cpf = "07255431089";
@@ -119,6 +127,7 @@ public class TesteSeguradoPessoaMediator extends TesteMediator {
         SeguradoPessoa segBuscado = med.buscarSeguradoPessoa(cpf);
         assertNotNull(segBuscado);
     }
+
     @Test
     public void test11() {
         String cpf = "07255431089";
@@ -160,6 +169,7 @@ public class TesteSeguradoPessoaMediator extends TesteMediator {
         ret = med.alterarSeguradoPessoa(seg);
         assertEquals("Renda deve ser maior ou igual � zero", ret);
     }
+
     @Test
     public void test13() {
         String cpf = "07255431089";
@@ -178,6 +188,7 @@ public class TesteSeguradoPessoaMediator extends TesteMediator {
         assertNotNull(segBuscado);
         assertTrue(ComparadoraObjetosSerial.compareObjectsSerial(seg, segBuscado));
     }
+
     @Test
     public void test14() {
         String cpfOri = "07255432089";
@@ -194,6 +205,7 @@ public class TesteSeguradoPessoaMediator extends TesteMediator {
         String ret = med.alterarSeguradoPessoa(seg);
         assertEquals("CPF do segurado pessoa n�o existente", ret);
     }
+
     @Test
     public void test15() {
         String cpf = "07255431089";
@@ -207,6 +219,7 @@ public class TesteSeguradoPessoaMediator extends TesteMediator {
         SeguradoPessoa segBuscado = med.buscarSeguradoPessoa(cpf);
         assertNull(segBuscado);
     }
+
     @Test
     public void test16() {
         String cpfOri = "07255431089";

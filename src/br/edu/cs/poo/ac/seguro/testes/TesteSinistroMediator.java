@@ -29,10 +29,12 @@ public class TesteSinistroMediator extends TesteMediator {
     private CadastroObjetos cadVeiculo = new CadastroObjetos(Veiculo.class);
     private CadastroObjetos cadSinistro = new CadastroObjetos(Sinistro.class);
     private CadastroObjetos cadApolice = new CadastroObjetos(Apolice.class);
+
     @Override
     protected Class getClasse() {
         return Sinistro.class;
     }
+
     @BeforeEach
     public void setUp() {
         super.setUp();
@@ -42,6 +44,7 @@ public class TesteSinistroMediator extends TesteMediator {
         FileUtils.limparDiretorio("." + sep + SeguradoPessoa.class.getSimpleName());
         FileUtils.limparDiretorio("." + sep + Apolice.class.getSimpleName());
     }
+
     @Test
     public void teste01() {
         try {
@@ -54,6 +57,7 @@ public class TesteSinistroMediator extends TesteMediator {
             Assertions.assertEquals("Dados do sinistro devem ser informados", msgs.get(0));
         }
     }
+
     @Test
     public void teste02() {
         try {
@@ -65,10 +69,10 @@ public class TesteSinistroMediator extends TesteMediator {
             Assertions.assertNotNull(msgs);
             Assertions.assertEquals(5, msgs.size());
             Assertions.assertEquals("Data/hora do sinistro deve ser informada", msgs.get(0));
-            Assertions.assertEquals("Placa do Ve�culo deve ser informada", msgs.get(1));
-            Assertions.assertEquals("Usu�rio do registro de sinistro deve ser informado", msgs.get(2));
+            Assertions.assertEquals("Placa do Veiculo deve ser informada", msgs.get(1));
+            Assertions.assertEquals("Usuario do registro de sinistro deve ser informado", msgs.get(2));
             Assertions.assertEquals("Valor do sinistro deve ser maior que zero", msgs.get(3));
-            Assertions.assertEquals("C�digo do tipo de sinistro inv�lido", msgs.get(4));
+            Assertions.assertEquals("Codigo do tipo de sinistro invalido", msgs.get(4));
         }
         try {
             DadosSinistro dados = new DadosSinistro(null, null, null, 0, 6);
@@ -79,12 +83,13 @@ public class TesteSinistroMediator extends TesteMediator {
             Assertions.assertNotNull(msgs);
             Assertions.assertEquals(5, msgs.size());
             Assertions.assertEquals("Data/hora do sinistro deve ser informada", msgs.get(0));
-            Assertions.assertEquals("Placa do Ve�culo deve ser informada", msgs.get(1));
-            Assertions.assertEquals("Usu�rio do registro de sinistro deve ser informado", msgs.get(2));
+            Assertions.assertEquals("Placa do Veiculo deve ser informada", msgs.get(1));
+            Assertions.assertEquals("Usuario do registro de sinistro deve ser informado", msgs.get(2));
             Assertions.assertEquals("Valor do sinistro deve ser maior que zero", msgs.get(3));
-            Assertions.assertEquals("C�digo do tipo de sinistro inv�lido", msgs.get(4));
+            Assertions.assertEquals("Codigo do tipo de sinistro invalido", msgs.get(4));
         }
     }
+
     @Test
     public void teste03() {
         try {
@@ -96,7 +101,7 @@ public class TesteSinistroMediator extends TesteMediator {
             Assertions.assertNotNull(msgs);
             Assertions.assertEquals(2, msgs.size());
             Assertions.assertEquals("Data/hora do sinistro deve ser menor que a data/hora atual", msgs.get(0));
-            Assertions.assertEquals("Ve�culo n�o cadastrado", msgs.get(1));
+            Assertions.assertEquals("Veiculo não cadastrado", msgs.get(1));
         }
     }
 
@@ -119,6 +124,7 @@ public class TesteSinistroMediator extends TesteMediator {
             Assertions.assertEquals("Data/hora do sinistro deve ser informada", msgs.get(0));
         }
     }
+
     @Test
     public void teste05() {
         try {
@@ -135,9 +141,10 @@ public class TesteSinistroMediator extends TesteMediator {
             List<String> msgs = e.getMensagens();
             Assertions.assertNotNull(msgs);
             Assertions.assertEquals(1, msgs.size());
-            Assertions.assertEquals("N�o existe ap�lice vigente para o ve�culo", msgs.get(0));
+            Assertions.assertEquals("Nao existe apolice vigente para o veiculo", msgs.get(0));
         }
     }
+
     @Test
     public void teste06() {
         try {
@@ -157,9 +164,10 @@ public class TesteSinistroMediator extends TesteMediator {
             List<String> msgs = e.getMensagens();
             Assertions.assertNotNull(msgs);
             Assertions.assertEquals(1, msgs.size());
-            Assertions.assertEquals("N�o existe ap�lice vigente para o ve�culo", msgs.get(0));
+            Assertions.assertEquals("Nao existe apolice vigente para o veiculo", msgs.get(0));
         }
     }
+
     @Test
     public void teste07() {
         try {
@@ -182,9 +190,10 @@ public class TesteSinistroMediator extends TesteMediator {
             List<String> msgs = e.getMensagens();
             Assertions.assertNotNull(msgs);
             Assertions.assertEquals(1, msgs.size());
-            Assertions.assertEquals("N�o existe ap�lice vigente para o ve�culo", msgs.get(0));
+            Assertions.assertEquals("Nao existe apolice vigente para o veiculo", msgs.get(0));
         }
     }
+
     @Test
     public void teste08() {
         try {
@@ -210,9 +219,10 @@ public class TesteSinistroMediator extends TesteMediator {
             List<String> msgs = e.getMensagens();
             Assertions.assertNotNull(msgs);
             Assertions.assertEquals(1, msgs.size());
-            Assertions.assertEquals("Valor do sinistro n�o pode ultrapassar o valor m�ximo segurado constante na ap�lice", msgs.get(0));
+            Assertions.assertEquals("Valor do sinistro nao pode ultrapassar o valor maximo segurado constante na apolice", msgs.get(0));
         }
     }
+
     @Test
     public void teste09() {
         try {
@@ -242,13 +252,14 @@ public class TesteSinistroMediator extends TesteMediator {
             Sinistro sinRef = new Sinistro(numeroEsp, vei, dhSinistro, now, usuario, new BigDecimal(valorSinistro), TipoSinistro.COLISAO);
             sinRef.setNumeroApolice(numero);
             sinRef.setSequencial(1);
-            Sinistro sinGrav = (Sinistro)cadastro.buscar(numeroSin);
+            Sinistro sinGrav = (Sinistro) cadastro.buscar(numeroSin);
             Assertions.assertNotNull(sinGrav);
             Assertions.assertTrue(ComparadoraObjetosSerial.compareObjectsSerial(sinRef, sinGrav));
         } catch (ExcecaoValidacaoDados e) {
             Assertions.fail(e.fillInStackTrace());
         }
     }
+
     @Test
     public void teste10() {
         try {
@@ -283,7 +294,7 @@ public class TesteSinistroMediator extends TesteMediator {
             Sinistro sinRef = new Sinistro(numeroEsp, vei, dhSinistro, now, usuario, new BigDecimal(valorSinistro), TipoSinistro.COLISAO);
             sinRef.setNumeroApolice(numero);
             sinRef.setSequencial(2);
-            Sinistro sinGrav = (Sinistro)cadastro.buscar(numeroSin);
+            Sinistro sinGrav = (Sinistro) cadastro.buscar(numeroSin);
             Assertions.assertNotNull(sinGrav);
             Assertions.assertTrue(ComparadoraObjetosSerial.compareObjectsSerial(sinRef, sinGrav));
         } catch (ExcecaoValidacaoDados e) {

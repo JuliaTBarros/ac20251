@@ -10,6 +10,7 @@ import br.edu.cs.poo.ac.seguro.entidades.Veiculo;
 
 public class TesteVeiculoDAO extends TesteDAO {
     private VeiculoDAO dao = new VeiculoDAO();
+
     protected Class getClasse() {
         return Veiculo.class;
     }
@@ -21,6 +22,7 @@ public class TesteVeiculoDAO extends TesteDAO {
         Veiculo ve = dao.buscar(placa);
         Assertions.assertNotNull(ve);
     }
+
     @Test
     public void teste02() {
         String placa = "10000000";
@@ -28,6 +30,7 @@ public class TesteVeiculoDAO extends TesteDAO {
         Veiculo ve = dao.buscar("11000000");
         Assertions.assertNull(ve);
     }
+
     @Test
     public void teste03() {
         String placa = "20000000";
@@ -35,6 +38,7 @@ public class TesteVeiculoDAO extends TesteDAO {
         boolean ret = dao.excluir(placa);
         Assertions.assertTrue(ret);
     }
+
     @Test
     public void teste04() {
         String placa = "30000000";
@@ -42,6 +46,7 @@ public class TesteVeiculoDAO extends TesteDAO {
         boolean ret = dao.excluir("31000000");
         Assertions.assertFalse(ret);
     }
+
     @Test
     public void teste05() {
         String placa = "40000000";
@@ -59,6 +64,7 @@ public class TesteVeiculoDAO extends TesteDAO {
         boolean ret = dao.incluir(ve);
         Assertions.assertFalse(ret);
     }
+
     @Test
     public void teste07() {
         String placa = "60000000";

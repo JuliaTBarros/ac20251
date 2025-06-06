@@ -2,15 +2,19 @@ package br.edu.cs.poo.ac.seguro.testes;
 
 
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
+
 import br.edu.cs.poo.ac.seguro.entidades.Endereco;
 import br.edu.cs.poo.ac.seguro.entidades.SeguradoEmpresa;
 import br.edu.cs.poo.ac.seguro.mediators.SeguradoEmpresaMediator;
 
 public class TesteSeguradoEmpresaMediator extends TesteMediator {
     private SeguradoEmpresaMediator med = SeguradoEmpresaMediator.getInstancia();
+
     protected Class getClasse() {
         return SeguradoEmpresa.class;
     }
@@ -23,21 +27,25 @@ public class TesteSeguradoEmpresaMediator extends TesteMediator {
         ret = med.validarCnpj(" ");
         assertEquals(msg, ret);
     }
+
     @Test
     public void test02() {
         String ret = med.validarCnpj("123456789012");
         assertEquals("CNPJ deve ter 14 caracteres", ret);
     }
+
     @Test
     public void test03() {
         String ret = med.validarCnpj("11851715000171");
         assertEquals("CNPJ com d�gito inv�lido", ret);
     }
+
     @Test
     public void test04() {
         String ret = med.validarCnpj("11851715000174");
         assertEquals(null, ret);
     }
+
     @Test
     public void test05() {
         String msg = "Faturamento deve ser maior que zero";
@@ -46,6 +54,7 @@ public class TesteSeguradoEmpresaMediator extends TesteMediator {
         ret = med.validarFaturamento(0.0);
         assertEquals(msg, ret);
     }
+
     @Test
     public void test06() {
         String ret = med.validarFaturamento(10.0);
@@ -63,6 +72,7 @@ public class TesteSeguradoEmpresaMediator extends TesteMediator {
         SeguradoEmpresa segBuscado = med.buscarSeguradoEmpresa(cnpj);
         assertNotNull(segBuscado);
     }
+
     @Test
     public void test08() {
         String cnpj = "11851715000274";
@@ -100,6 +110,7 @@ public class TesteSeguradoEmpresaMediator extends TesteMediator {
         ret = med.incluirSeguradoEmpresa(seg);
         assertEquals("Faturamento deve ser maior que zero", ret);
     }
+
     @Test
     public void test10() {
         String cnpj = "11851715000174";
@@ -112,6 +123,7 @@ public class TesteSeguradoEmpresaMediator extends TesteMediator {
         SeguradoEmpresa segBuscado = med.buscarSeguradoEmpresa(cnpj);
         assertNotNull(segBuscado);
     }
+
     @Test
     public void test11() {
         String cnpj = "11851715000174";
@@ -155,6 +167,7 @@ public class TesteSeguradoEmpresaMediator extends TesteMediator {
         ret = med.alterarSeguradoEmpresa(seg);
         assertEquals("Faturamento deve ser maior que zero", ret);
     }
+
     @Test
     public void test13() {
         String cnpj = "11851715000174";
@@ -173,6 +186,7 @@ public class TesteSeguradoEmpresaMediator extends TesteMediator {
         assertNotNull(segBuscado);
         assertTrue(ComparadoraObjetosSerial.compareObjectsSerial(seg, segBuscado));
     }
+
     @Test
     public void test14() {
         String cnpjOri = "11851715000274";
@@ -189,6 +203,7 @@ public class TesteSeguradoEmpresaMediator extends TesteMediator {
         String ret = med.alterarSeguradoEmpresa(seg);
         assertEquals("CNPJ do segurado empresa n�o existente", ret);
     }
+
     @Test
     public void test15() {
         String cnpj = "11851715000174";
@@ -202,6 +217,7 @@ public class TesteSeguradoEmpresaMediator extends TesteMediator {
         SeguradoEmpresa segBuscado = med.buscarSeguradoEmpresa(cnpj);
         assertNull(segBuscado);
     }
+
     @Test
     public void test16() {
         String cnpjOri = "11851715000274";

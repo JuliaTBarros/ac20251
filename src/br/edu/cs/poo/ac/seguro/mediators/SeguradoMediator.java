@@ -2,12 +2,14 @@ package br.edu.cs.poo.ac.seguro.mediators;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+
 import br.edu.cs.poo.ac.seguro.entidades.Endereco;
 
 public class SeguradoMediator {
     private static SeguradoMediator instancia;
 
-    private SeguradoMediator() {}
+    private SeguradoMediator() {
+    }
 
     public static SeguradoMediator getInstancia() {
         if (instancia == null) {

@@ -24,12 +24,12 @@ public class SinistroMediator {
     private static SinistroMediator instancia;
 
     public static SinistroMediator getInstancia() {
-        if (instancia == null)
-            instancia = new SinistroMediator();
+        if (instancia == null) instancia = new SinistroMediator();
         return instancia;
     }
 
-    private SinistroMediator() {}
+    private SinistroMediator() {
+    }
 
     public String incluirSinistro(DadosSinistro dados, LocalDateTime dataHoraAtual) throws ExcecaoValidacaoDados {
         ExcecaoValidacaoDados excecao = new ExcecaoValidacaoDados();
@@ -53,12 +53,12 @@ public class SinistroMediator {
 
         // Validação 4: placa do veículo não pode ser null nem branco
         if (dados.getPlaca() == null || dados.getPlaca().trim().isEmpty()) {
-            mensagens.add("Placa do Veículo deve ser informada");
+            mensagens.add("Placa do Veiculo deve ser informada");
         }
 
         // Validação 5: usuário do registro não pode ser null nem branco
         if (dados.getUsuarioRegistro() == null || dados.getUsuarioRegistro().trim().isEmpty()) {
-            mensagens.add("Usuário do registro de sinistro deve ser informado");
+            mensagens.add("Usuario do registro de sinistro deve ser informado");
         }
 
         // Validação 6: valor do sinistro deve ser maior que zero
@@ -71,12 +71,12 @@ public class SinistroMediator {
         try {
             TipoSinistro[] tipos = TipoSinistro.values();
             if (dados.getCodigoTipoSinistro() < 1 || dados.getCodigoTipoSinistro() > tipos.length) {
-                mensagens.add("Código do tipo de sinistro inválido");
+                mensagens.add("Codigo do tipo de sinistro invalido");
             } else {
                 tipoSinistro = tipos[dados.getCodigoTipoSinistro() - 1];
             }
         } catch (Exception e) {
-            mensagens.add("Código do tipo de sinistro inválido");
+            mensagens.add("Codigo do tipo de sinistro invalido");
         }
 
         // Validação 8: placa deve ser de um veículo cadastrado
@@ -84,7 +84,7 @@ public class SinistroMediator {
         if (dados.getPlaca() != null && !dados.getPlaca().trim().isEmpty()) {
             veiculo = daoVeiculo.buscar(dados.getPlaca());
             if (veiculo == null) {
-                mensagens.add("Veículo não cadastrado");
+                mensagens.add("Veiculo não cadastrado");
             }
         }
 
@@ -101,8 +101,7 @@ public class SinistroMediator {
                             LocalDateTime inicioVigencia = apolice.getDataInicioVigencia().atStartOfDay();
                             LocalDateTime fimVigencia = inicioVigencia.plusYears(1);
 
-                            if (!dados.getDataHoraSinistro().isBefore(inicioVigencia) &&
-                                    dados.getDataHoraSinistro().isBefore(fimVigencia)) {
+                            if (!dados.getDataHoraSinistro().isBefore(inicioVigencia) && dados.getDataHoraSinistro().isBefore(fimVigencia)) {
                                 apoliceVigente = apolice;
                                 break;
                             }
@@ -112,14 +111,14 @@ public class SinistroMediator {
             }
 
             if (apoliceVigente == null) {
-                mensagens.add("Não existe apólice vigente para o veículo");
+                mensagens.add("Nao existe apolice vigente para o veiculo");
             }
         }
 
         // Validação do valor máximo segurado
         if (apoliceVigente != null && apoliceVigente.getValorMaximoSegurado() != null) {
             if (dados.getValorSinistro() > apoliceVigente.getValorMaximoSegurado().doubleValue()) {
-                mensagens.add("Valor do sinistro não pode ultrapassar o valor máximo segurado constante na apólice");
+                mensagens.add("Valor do sinistro nao pode ultrapassar o valor maximo segurado constante na apolice");
             }
         }
 
@@ -149,15 +148,7 @@ public class SinistroMediator {
         String numeroSinistro = "S" + apoliceVigente.getNumero() + String.format("%03d", sequencial);
 
         // Criar e salvar sinistro
-        Sinistro sinistro = new Sinistro(
-                numeroSinistro,
-                veiculo,
-                dados.getDataHoraSinistro(),
-                dataHoraAtual,
-                dados.getUsuarioRegistro(),
-                new BigDecimal(dados.getValorSinistro()),
-                tipoSinistro
-        );
+        Sinistro sinistro = new Sinistro(numeroSinistro, veiculo, dados.getDataHoraSinistro(), dataHoraAtual, dados.getUsuarioRegistro(), new BigDecimal(dados.getValorSinistro()), tipoSinistro);
 
         sinistro.setNumeroApolice(apoliceVigente.getNumero());
         sinistro.setSequencial(sequencial);

@@ -8,7 +8,8 @@ public class SeguradoPessoaMediator {
     private SeguradoMediator seguradoMediator = SeguradoMediator.getInstancia();
     private SeguradoPessoaDAO seguradoPessoaDAO = new SeguradoPessoaDAO();
 
-    private SeguradoPessoaMediator() {}
+    private SeguradoPessoaMediator() {
+    }
 
     public static SeguradoPessoaMediator getInstancia() {
         if (instancia == null) {

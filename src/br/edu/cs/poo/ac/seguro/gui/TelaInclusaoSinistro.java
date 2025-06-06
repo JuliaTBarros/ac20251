@@ -41,42 +41,57 @@ public class TelaInclusaoSinistro extends JFrame {
         setLocationRelativeTo(null);
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(5,5,5,5);
+        gbc.insets = new Insets(5, 5, 5, 5);
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.weightx = 1.0;
 
         // Placa do Veículo
-        gbc.gridx = 0; gbc.gridy = 0; gbc.anchor = GridBagConstraints.WEST;
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.WEST;
         add(new JLabel("Placa do Veículo:"), gbc);
-        gbc.gridx = 1; gbc.anchor = GridBagConstraints.EAST;
+        gbc.gridx = 1;
+        gbc.anchor = GridBagConstraints.EAST;
         txtPlaca = new JTextField(20); // [cite: 14]
         add(txtPlaca, gbc);
 
         // Data e Hora do Sinistro
-        gbc.gridx = 0; gbc.gridy = 1; gbc.anchor = GridBagConstraints.WEST;
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.anchor = GridBagConstraints.WEST;
         add(new JLabel("Data/Hora Sinistro (dd/MM/yyyy HH:mm):"), gbc);
-        gbc.gridx = 1; gbc.anchor = GridBagConstraints.EAST;
+        gbc.gridx = 1;
+        gbc.anchor = GridBagConstraints.EAST;
         txtDataHoraSinistro = new JTextField(20); // [cite: 14]
         add(txtDataHoraSinistro, gbc);
 
         // Usuário do Registro
-        gbc.gridx = 0; gbc.gridy = 2; gbc.anchor = GridBagConstraints.WEST;
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.anchor = GridBagConstraints.WEST;
         add(new JLabel("Usuário do Registro:"), gbc);
-        gbc.gridx = 1; gbc.anchor = GridBagConstraints.EAST;
+        gbc.gridx = 1;
+        gbc.anchor = GridBagConstraints.EAST;
         txtUsuarioRegistro = new JTextField(20); // [cite: 14]
         add(txtUsuarioRegistro, gbc);
 
         // Valor do Sinistro
-        gbc.gridx = 0; gbc.gridy = 3; gbc.anchor = GridBagConstraints.WEST;
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        gbc.anchor = GridBagConstraints.WEST;
         add(new JLabel("Valor do Sinistro (R$):"), gbc);
-        gbc.gridx = 1; gbc.anchor = GridBagConstraints.EAST;
+        gbc.gridx = 1;
+        gbc.anchor = GridBagConstraints.EAST;
         txtValorSinistro = new JTextField(20); // [cite: 14]
         add(txtValorSinistro, gbc);
 
         // Tipo de Sinistro
-        gbc.gridx = 0; gbc.gridy = 4; gbc.anchor = GridBagConstraints.WEST;
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        gbc.anchor = GridBagConstraints.WEST;
         add(new JLabel("Tipo de Sinistro:"), gbc); // [cite: 16]
-        gbc.gridx = 1; gbc.anchor = GridBagConstraints.EAST;
+        gbc.gridx = 1;
+        gbc.anchor = GridBagConstraints.EAST;
         cmbTipoSinistro = new JComboBox<>();
         popularComboTipoSinistro();
         add(cmbTipoSinistro, gbc);
@@ -88,7 +103,11 @@ public class TelaInclusaoSinistro extends JFrame {
         buttonPanel.add(btnIncluir);
         buttonPanel.add(btnLimpar);
 
-        gbc.gridx = 0; gbc.gridy = 5; gbc.gridwidth = 2; gbc.fill = GridBagConstraints.NONE; gbc.anchor = GridBagConstraints.CENTER;
+        gbc.gridx = 0;
+        gbc.gridy = 5;
+        gbc.gridwidth = 2;
+        gbc.fill = GridBagConstraints.NONE;
+        gbc.anchor = GridBagConstraints.CENTER;
         add(buttonPanel, gbc);
 
 
@@ -107,13 +126,13 @@ public class TelaInclusaoSinistro extends JFrame {
                 }
                 String selectedTipoNome = (String) cmbTipoSinistro.getSelectedItem();
                 TipoSinistro selectedTipo = null;
-                for(TipoSinistro tipo : TipoSinistro.values()){
-                    if(tipo.getNome().equals(selectedTipoNome)){
+                for (TipoSinistro tipo : TipoSinistro.values()) {
+                    if (tipo.getNome().equals(selectedTipoNome)) {
                         selectedTipo = tipo;
                         break;
                     }
                 }
-                if(selectedTipo == null) {
+                if (selectedTipo == null) {
                     JOptionPane.showMessageDialog(this, "Tipo de sinistro inválido.", "Erro", JOptionPane.ERROR_MESSAGE);
                     return;
                 }

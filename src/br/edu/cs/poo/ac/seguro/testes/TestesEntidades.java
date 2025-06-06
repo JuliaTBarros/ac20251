@@ -33,11 +33,13 @@ public class TestesEntidades {
         ts = TipoSinistro.getTipoSinistro(2);
         Assertions.assertEquals(ts, TipoSinistro.INCENDIO);
     }
+
     @Test
     public void teste02() {
         TipoSinistro ts = TipoSinistro.getTipoSinistro(7);
         Assertions.assertNull(ts);
     }
+
     @Test
     public void teste03() {
         SeguradoEmpresa seg = new SeguradoEmpresa("JOCA", null, null, BigDecimal.ZERO, null, 0.0, false);
@@ -45,6 +47,7 @@ public class TestesEntidades {
         seg.creditarBonus(new BigDecimal("50.00"));
         Assertions.assertEquals(seg.getBonus(), new BigDecimal("150.00"));
     }
+
     @Test
     public void teste04() {
         SeguradoPessoa seg = new SeguradoPessoa("MARIA", null, null, new BigDecimal("200.00"), null, 0.0);
@@ -52,6 +55,7 @@ public class TestesEntidades {
         seg.debitarBonus(new BigDecimal("20.00"));
         Assertions.assertEquals(seg.getBonus(), new BigDecimal("140.00"));
     }
+
     @Test
     public void teste05() {
         int ano = LocalDate.now().getYear() - 10;
@@ -60,6 +64,7 @@ public class TestesEntidades {
         SeguradoPessoa seg = new SeguradoPessoa("ACB LTDA", null, LocalDate.of(ano, mes, dia), null, null, 0.0);
         Assertions.assertEquals(seg.getIdade(), 10);
     }
+
     @Test
     public void teste06() {
         Segurado seg = new SeguradoEmpresa("ED", null, LocalDate.now(), null, "1354654", 0, false);
@@ -69,6 +74,7 @@ public class TestesEntidades {
         v.setProprietario(seg);
         Assertions.assertTrue(seg == v.getProprietario());
     }
+
     @Test
     public void teste07() {
         int seq = 1212;
@@ -80,6 +86,7 @@ public class TestesEntidades {
         Assertions.assertEquals(seq, s.getSequencial());
         Assertions.assertEquals(apo, s.getNumeroApolice());
     }
+
     @Test
     public void teste08() {
         Assertions.assertTrue(Modifier.isAbstract(Segurado.class.getModifiers()));
